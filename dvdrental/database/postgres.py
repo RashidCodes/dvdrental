@@ -1,6 +1,5 @@
+import os
 from sqlalchemy.engine import URL, create_engine
-
-
 
 
 def create_pg_engine(database: str ="dvdrental"):
@@ -22,12 +21,17 @@ def create_pg_engine(database: str ="dvdrental"):
 
     """ 
 
+    db_user = os.environ.get("db_user")
+    db_server_name = os.environ.get("db_server_name")
+
+
+
     # create connection to database 
     connection_url = URL.create(
         drivername = "postgresql+pg8000",
-        username = "postgres",
-        password = "",
-        host = "localhost",
+        username = db_user,
+        password = "sheed721",
+        host = db_server_name,
         port = "5432",
         database = database
     )
